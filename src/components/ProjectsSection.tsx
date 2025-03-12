@@ -1,32 +1,54 @@
-import React from 'react';
-import ProjectCard from './ProjectCard';
+import React, { useState, useEffect } from 'react';
+import GitHubProjectCard from './GitHubProjectCard';
+
+interface GitHubProject {
+  id: number;
+  name: string;
+  description: string;
+  html_url: string;
+  language: string;
+  stargazers_count: number;
+}
 
 const ProjectsSection: React.FC = () => {
-  const projects = [
-    {
-      title: 'E-commerce Platform',
-      description: 'A full-stack e-commerce solution built with React and Node.js.',
-      imageUrl: '/images/project1.jpg',
-      githubUrl: 'https://github.com/yourusername/project1',
-      liveUrl: 'https://project1.com',
-    },
-    {
-      title: 'Task Management App',
-      description: 'A React Native mobile app for managing daily tasks and schedules.',
-      imageUrl: '/images/project2.jpg',
-      githubUrl: 'https://github.com/yourusername/project2',
-      liveUrl: 'https://project2.com',
-    },
-    // Add more projects as needed
-  ];
+  const [projects, setProjects] = useState<GitHubProject[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('https://api.github.com/users/undadedigit/repos?sort=updated&per_page=6');
+        if (!response.ok) {
+          throw new Error('Failed to fetch projects');
+        }
+        const data = await response.json();
+        setProjects(data);
+        setLoading(false);
+      } catch (err) {
+        setError('Failed to load projects. Please try again later.');
+        setLoading(false);
+      }
+    };
+
+    fetchProjects();
+  }, []);
+
+  if (loading) {
+    return <div>Loading projects...</div>;
+  }
+
+  if (error) {
+    return <div>{error}</div>;
+  }
 
   return (
     <section id="projects" className="py-16 bg-gray-100">
       <div className="container mx-auto">
-        <h2 className="text-3xl font-bold mb-8 text-center">Projects</h2>
+        <h2 className="text-3xl font-bold mb-8 text-center">My GitHub Projects</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project) => (
-            <ProjectCard key={project.title} {...project} />
+            <GitHubProjectCard key={project.id} {...project} />
           ))}
         </div>
       </div>

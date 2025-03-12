@@ -6,8 +6,8 @@ import Hero from '../components/Hero';
 import SkillsSection from '../components/SkillsSection';
 import ProjectsSection from '../components/ProjectsSection';
 
-const pageTitle = "Your Name - Resume";
-const pageDescription = "Professional resume and portfolio of Your Name";
+const pageTitle = "Anthony Rana";
+const pageDescription = "Professional resume and portfolio of Anthony Rana";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -15,7 +15,7 @@ const pageDescription = "Professional resume and portfolio of Your Name";
   <main>
     <Hero />
     <SkillsSection />
-    <ProjectsSection />
+    <ProjectsSection client:load />
   </main>
   <Footer />
 </Layout>
