@@ -27,6 +27,7 @@ const Header: React.FC = () => {
           <li><a href="/#about" className="hover:text-gray-300 transition-colors">About</a></li>
           <li><a href="/#skills" className="hover:text-gray-300 transition-colors">Skills</a></li>
           <li><a href="/#projects" className="hover:text-gray-300 transition-colors">Projects</a></li>
+          <li><a href="/path-to-your-cv.pdf" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">CV</a></li>
           <li><a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="hover:text-gray-300 transition-colors">LinkedIn</a></li>
           <li><a href="mailto:anthonyrana@gmail.com" className="hover:text-gray-300 transition-colors">Contact</a></li>
         </ul>
