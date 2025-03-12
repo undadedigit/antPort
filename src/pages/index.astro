@@ -11,8 +11,8 @@ const pageDescription = "Professional resume and portfolio of Anthony Rana";
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <Header />
-  <main>
+  <Header client:load />
+  <main class="pt-16">
     <Hero />
     <SkillsSection />
     <ProjectsSection client:load />
